@@ -1,0 +1,92 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "stree",
+            "type": "shell",
+            "command": "bundle exec stree check Gemfile $(git ls-files '*.rb') $(git ls-files '*.rake')"
+        },
+        {
+            "label": "prettier",
+            "type": "shell",
+            "command": "yarn prettier --list-different \"assets/**/*.{scss,js,es6,hbs}\""
+        },
+        {
+            "label": "ember",
+            "type": "shell",
+            "command": "yarn ember-template-lint --no-error-on-unmatched-pattern assets/javascripts"
+        },
+        {
+            "label": "ember-admin",
+            "type": "shell",
+            "command": "yarn ember-template-lint --no-error-on-unmatched-pattern admin/assets/javascripts"
+        },
+        {
+            "label": "rubocop",
+            "type": "shell",
+            "command": "bundle exec rubocop ."
+        },
+        {
+            "label": "eslint",
+            "type": "shell",
+            "command": "yarn eslint --ext .js,.js.es6 --no-error-on-unmatched-pattern {test,assets,admin/assets}/javascripts",
+            "problemMatcher": [
+                "$eslint-stylish"
+            ]
+        },
+        {
+            "label": "Linter Check",
+            "type": "shell",
+            "command": "echo Finished",
+            "group": "build",
+            "dependsOn": [
+                "stree",
+                "prettier",
+                "ember",
+                "ember-admin",
+                "rubocop",
+                "eslint"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "stree write",
+            "type": "shell",
+            "command": "bundle exec stree write Gemfile $(git ls-files '*.rb') $(git ls-files '*.rake')"
+        },
+        {
+            "label": "prettier write",
+            "type": "shell",
+            "command": "yarn prettier -w \"assets/**/*.{scss,js,es6,hbs}\""
+        },
+        {
+            "label": "Linter Write",
+            "type": "shell",
+            "command": "echo Finished",
+            "group": {
+                "kind": "build"
+            },
+            "dependsOn": [
+                "stree write",
+                "prettier write"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Github Commit Prepare",
+            "type": "shell",
+            "command": "echo Finished",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "Linter Write",
+                "Linter Check"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

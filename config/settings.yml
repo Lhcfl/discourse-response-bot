@@ -1,0 +1,16 @@
+plugins:
+  dicourse_response_bot_plugin_enabled:
+    default: false
+    client: true
+  dicourse_response_bot_plugin_bot_id:
+    default: -7
+    type: integer
+    min: -10000
+    client: false
+  dicourse_response_bot_plugin_bot_response:
+    default: "![](https://charts2.finviz.com/chart.ashx?t={t}&ty=c&ta={v2}&p={p}&s=l)"
+    client: false
+  dicourse_response_bot_plugin_bot_command_variables:
+    default: "t={%s}|v2={%s}==d?1:0,p={%s}"
+    type: list
+    client: false

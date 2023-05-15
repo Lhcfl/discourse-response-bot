@@ -1,0 +1,7 @@
+en:
+  site_settings:
+    dicourse_response_bot_plugin_enabled: "Enable Eesponse Bot Plugin"
+    dicourse_response_bot_plugin_bot_id: "Bot id of your response bot"
+    dicourse_response_bot_plugin_bot_response: "What will Bot response. {var_name} will be replaced with varible's value"
+    dicourse_response_bot_plugin_bot_command_variables: "Varibables list. {%s} is what user types. {var_name} will be replaced with varible's value. Use var_name=example_text to set varible `var_name` with `example_text`."
+    
