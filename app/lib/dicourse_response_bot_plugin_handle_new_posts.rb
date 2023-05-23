@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 DiscourseEvent.on(:post_created) do |*params|
-  if SiteSetting.dicourse_response_bot_plugin_enabled
+  begin
+
     # Get params of post you created.
     post, opt, user = params
 
@@ -57,5 +58,11 @@ DiscourseEvent.on(:post_created) do |*params|
         skip_validations: true,
       )
     end
-  end
+
+  rescue => exception
+    
+    puts exception
+
+  end if SiteSetting.dicourse_response_bot_plugin_enabled
+
 end
